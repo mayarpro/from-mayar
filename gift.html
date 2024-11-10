@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>from mayar to yazeed</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); /* استيراد خط جميل */
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      position: relative;
+
+    }
+
+    .heart {
+      position: relative; 
+      width: 150px; /* حجم القلب الذي يحتوي على النص */
+      height: 150px;
+      background-color: rgb(232, 136, 152);
+      transform: rotate(50deg);
+      animation: heartbeat 1s infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background-color: rgb(232, 136, 152);
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -80px;
+      left: 80;
+    }
+
+    .heart::after {
+      left: -80px;
+      top: 80;
+    }
+
+    .heart-text {
+      transform: rotate(-45deg);
+      font-size: 30px; /* حجم النص أكبر */
+      font-family: 'Pacifico', cursive;
+      color: rgb(16, 14, 14);
+      text-align: center;
+      padding: 5px;
+      line-height: 1.2; position: relative;
+      z-index: 1; 
+
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1) rotate(45deg);
+      }
+      50% {
+        transform: scale(1.1) rotate(45deg);
+      }
+    }
+
+    /* القلوب المتطايرة */
+    .heart-fly {
+      position: absolute;
+      width: 15px; /* حجم أصغر للقلب المتطاير */
+      height: 15px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: floatUp 5s linear infinite;
+    }
+
+    .heart-fly::before,
+    .heart-fly::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart-fly::before {
+      top: -7px;
+      left: 0;
+    }
+
+    .heart-fly::after {
+      left: 7px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-600px) rotate(45deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="heart">
+  <div class="heart-text">I love you Yazeed</div>
+</div>
+
+<script>
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart-fly');
+    heart.style.left = Math.random() * 100 + "vw"; // اختيار موقع أفقي عشوائي
+    heart.style.animationDuration = (2 + Math.random() * 3) + "s"; // مدة حركة عشوائية بين 2 إلى 5 ثواني
+    document.body.appendChild(heart);
+
+    // إزالة القلب بعد انتهاء الحركة
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }
+
+  // إنشاء قلب كل نصف ثانية
+  setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
